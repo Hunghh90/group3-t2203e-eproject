@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Search</title>
+    <%- include("css.ejs")%>
+    <link rel="stylesheet" href="/css/list-product.css"/>
+    <link rel="stylesheet" href="/css/search-home.css"/>
+
+</head>
+
+<body>
+<%- include("search_home.ejs")%>
+<%- include("header.ejs")%>
+<div class="featured-car content-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-12">
+                <div class="sidebar-left">
+
+                    <div class="widget widget-3 advanced-search2">
+                        <h3 class="sidebar-title">Search Cars</h3>
+                        <form action="/product" method="GET">
+                            <div class="form-group">
+                                <select class="search-fields" style="width: 360px;font-size: 18px" name="selectBrand">
+                                    <option>Select Brand</option>
+                                    <%for(var i=0;i<brandList.length;i++){%>
+                                    <option><%=brandList[i].BrName%></option>
+                                    <%}%>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select class="search-fields" style="width: 360px;font-size: 18px" name="selectYear">
+                                    <option>Select Year</option>
+                                    <%for(var i=0;i<yearList.length;i++){%>
+                                    <option><%=yearList[i].Year%></option>
+                                    <%}%>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select class="search-fields" style="width: 360px;font-size: 18px" name="selectBody">
+                                    <option>Select Body</option>
+                                    <%for(var i=0;i<bodyList.length;i++){%>
+                                    <option><%=bodyList[i].BodyStyle%></option>
+                                    <%}%>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select class="search-fields" style="width: 360px;font-size: 18px" name="selectPrice">
+                                    <option>Select Price</option>
+
+                                    <option value="0"><sup>$</sup>0 - 50.000</option>
+                                    <option value="1"><sup>$</sup>50.000 - 150.000</option>
+                                    <option value="2"><sup>$</sup>150.000 - 300.000</option>
+                                    <option value="3"><sup>$</sup>300.000 - 500.000</option>
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select class="search-fields" style="width: 360px;font-size: 18px" name="orderBy">
+                                    <option value="0">Default Order</option>
+                                    <option value="1">Price High to Low</option>
+                                    <option value="2">Price: Low to High</option>
+                                    <option value="3">Newest Properties</option>
+                                    <option value="4">Oldest Properties</option>
+                                </select>
+                            </div>
+                            <div class="form-group mb-0">
+                                <button class="search-button btn">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-8 col-md-12">
+                <div class="row">
+                    <%if(searchList.length==0){%>
+                        <div class="col-md-6 search-found">
+                    <p>Not Found 404</p>
+                        </div>
+                    <%}%>
+
+                    <%for(var i=0;i<searchList.length;i++){%>
+
+                    <div class="col-lg-6 col-md-6">
+                        <div class="car-box">
+                            <div class="photo-thumbnail">
+                                <div class="photo">
+                                    <img class="d-block w-100" style="height: 250px" src="<%=searchList[i].Image1%>" alt="car">
+                                    <a href="/car-detail?Image=<%=searchList[i].Image1%>">
+                                    </a>
+                                </div>
+                                <%if(searchList[i].Discount ==1) {%>
+                                <div class="tag" style="font-size: 20px"><del><sup>$</sup><%=searchList[i].Price%></del> <sup>$</sup><%=(searchList[i].Price * searchList[i].Percent / 100)%></div>
+                                <div class="tag2" style="font-size: 20px">-<%=100 -(searchList[i].Percent)%>%</div>
+                                <%}%>
+                                <%if(searchList[i].Discount ==0) {%>
+                                <div class="tag" style="font-size: 20px"><sup>$</sup><%=searchList[i].Price%></div>
+                                <%}%>
+                            </div>
+                            <div class="detail" style="height: 150px">
+                                <div class="top">
+                                    <h1>
+                                        <a href="/car-detail?Name=<%=searchList[i].Name%>"><%=searchList[i].BrName%> <%=searchList[i].Name%></a>
+                                    </h1>
+                                    <br>
+                                    <div class="row" id="best-color">
+                                        <div class="col-md-4"><i class="fa-solid fa-calendar-days"></i> <%= searchList[i].Year%> </div>
+                                        <div class="col-md-4"><i class="fa-solid fa-car"></i>  <%=searchList[i].BodyStyle%></div>
+                                        <div class="col-md-4"><i class="fa-solid fa-gas-pump"></i>  <%=searchList[i].Fueltype%></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <%}%>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<%- include("intro-section.ejs")%>
+<%- include("footer.ejs")%>
+
+</html>

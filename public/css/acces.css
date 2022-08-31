@@ -1,0 +1,58 @@
+.first{
+    width: 100%;
+    padding-left: 50px;
+    padding-top: 30px;
+    padding-bottom: 400px;
+}
+.imgfirst{
+    padding-top: 30px;
+    padding-left: 30px;
+    width: 50%;
+    float: left;
+}
+.textfirst{
+    padding-top: 30px;
+    width: 50%;
+    padding-right: 30px;
+    float: right;
+}
+
+.mainn{
+    padding-top: 30px;
+    padding-left: 50px;
+}
+.mainn2{
+    padding-top: 30px;
+    padding-left: 50px;
+    width: 70%;
+}
+.mainn3{
+    padding-top: 30px;
+    padding-left: 50px;
+}
+.videoo{
+    padding-left: 50px;
+    padding-top: 100px;
+    padding-left: 300px;
+}
+.mainn4{
+    padding-top: 30px;
+    padding-left: 50px;
+}
+.imgsecond{
+    width: 50%;
+    float: right;
+}
+.textsecond{
+    width: 50%;
+    float: left;
+}
+.second{
+    padding-top: 30px;
+    padding-left: 30px;
+    width: 100%;
+    padding-bottom: 500px;
+}
+.listphutung{
+    padding-bottom: 50px;
+}
